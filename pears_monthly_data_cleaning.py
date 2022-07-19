@@ -15,7 +15,7 @@ ROOT_DIR = os.path.realpath(os.path.join(os.path.dirname(__file__), '.'))
 # Import and consolidate staff lists
 # Data cleaning is only conducted on records related to SNAP-Ed and Family Consumer Science programming
 
-FY22_INEP_Staff = pd.ExcelFile(ROOT_DIR + r"\sample_inputs\FY22_INEP_Staff_List.xlsx")
+FY22_INEP_Staff = pd.ExcelFile(ROOT_DIR + "/example_inputs/FY22_INEP_Staff_List.xlsx")
 # Alternatively, use the absolute path to the staff list
 # FY22_INEP_Staff = pd.ExcelFile(r"C:\Users\netid\Box\INEP Staff Lists\FY22 INEP Staff List.xlsx")
 # Adjust header argument in following lines for actual staff list
@@ -64,7 +64,7 @@ former_snap_ed_staff = pd.read_excel(FY22_INEP_Staff, sheet_name='Former Staff')
 former_snap_ed_staff['email'] = former_snap_ed_staff['NETID'].map(str) + '@illinois.edu'
 
 # Import lookup table for counties to unit
-unit_counties = pd.read_excel(ROOT_DIR + r"\sample_inputs\Illinois Extension Unit Counties.xlsx")
+unit_counties = pd.read_excel(ROOT_DIR + "/example_inputs/Illinois Extension Unit Counties.xlsx")
 # Alternatively, use the absolute path to the counties to unit lookup table
 # unit_counties = pd.read_excel(r"\path\to\Illinois Extension Unit Counties.xlsx")
 unit_counties['Unit #'] = unit_counties['Unit #'].astype(str)
@@ -73,11 +73,11 @@ unit_counties['Unit #'] = unit_counties['Unit #'].astype(str)
 # Used output path from pears_nightly_export_reformatting.py
 # Otherwise, custom field labels will cause errors
 # pears_export_path = r"\path\to\reformatted_pears_data"
-# Script demo uses /sample_inputs directory
-pears_export_path = ROOT_DIR + r"\sample_inputs"
+# Script demo uses /example_inputs directory
+pears_export_path = ROOT_DIR + "/example_inputs"
 
 # Import Coalitions data and Coalition Members
-Coalitions_Export = pd.ExcelFile(pears_export_path + '\\' + "Coalition_Export.xlsx")
+Coalitions_Export = pd.ExcelFile(pears_export_path + '/' + "Coalition_Export.xlsx")
 Coa_Data = pd.read_excel(Coalitions_Export, 'Coalition Data')
 # Only data clean records for SNAP-Ed
 # SNAP-Ed staff occasionally select the wrong program_area for Coalitions
@@ -88,21 +88,21 @@ Coa_Members = pd.read_excel(Coalitions_Export, 'Members')
 
 # Import list of Illinois names, used to flag Coalition Members with individual's names
 # Source: https://www.ssa.gov/oact/babynames/state/
-IL_names = pd.read_csv(ROOT_DIR + r"\sample_inputs\BABY_NAMES_IL.TXT",
+IL_names = pd.read_csv(ROOT_DIR + "/example_inputs/BABY_NAMES_IL.TXT",
                        delimiter = ",",
                        names = ['state', 'sex', 'year', 'name', 'frequency'])
 IL_names = IL_names['name'].drop_duplicates()
 IL_names = IL_names.astype(str) + ' '
 
 # Import Indirect Activity data and Intervention Channels
-Indirect_Activities_Export = pd.ExcelFile(pears_export_path + '\\' + "Indirect_Activity_Export.xlsx")
+Indirect_Activities_Export = pd.ExcelFile(pears_export_path + '/' + "Indirect_Activity_Export.xlsx")
 IA_Data = pd.read_excel(Indirect_Activities_Export, 'Indirect Activity Data')
 # Only data clean records for SNAP-Ed
 IA_Data = IA_Data.loc[IA_Data['program_area'] == 'SNAP-Ed']
 IA_IC = pd.read_excel(Indirect_Activities_Export, 'Intervention Channels')
 
 # Import Partnerships data
-Partnerships_Export = pd.ExcelFile(pears_export_path + '\\' + "Partnership_Export.xlsx")
+Partnerships_Export = pd.ExcelFile(pears_export_path + '/' + "Partnership_Export.xlsx")
 Part_Data = pd.read_excel(Partnerships_Export, 'Partnership Data')
 # Only data clean records for SNAP-Ed
 # SNAP-Ed staff occasionally select the wrong program_area for Partnerships
@@ -111,7 +111,7 @@ Part_Data = Part_Data.loc[(Part_Data['program_area'] == 'SNAP-Ed') |
                         (Part_Data['reported_by_email'].isin(former_snap_ed_staff['email']))] # Filtering for former staff will include transfers
 
 # Import Program Activity data and Sessions
-Program_Activities_Export = pd.ExcelFile(pears_export_path + '\\' + "Program_Activities_Export.xlsx")
+Program_Activities_Export = pd.ExcelFile(pears_export_path + '/' + "Program_Activities_Export.xlsx")
 PA_Data = pd.read_excel(Program_Activities_Export, 'Program Activity Data')
 # Subset Program Activities for Family Consumer Science
 PA_Data_FCS = PA_Data.loc[PA_Data['program_areas'].str.contains('Family Consumer Science')]
@@ -120,13 +120,13 @@ PA_Data = PA_Data.loc[PA_Data['program_areas'].str.contains('SNAP-Ed')]
 PA_Sessions = pd.read_excel(Program_Activities_Export, 'Sessions')
 
 # Import PSE Site Activity data, Needs, Readiness, Effectiveness, and Changes
-PSE_Site_Activities_Export = pd.ExcelFile(pears_export_path + '\\' + "PSE_Site_Activity_Export.xlsx")
+PSE_Site_Activities_Export = pd.ExcelFile(pears_export_path + '/' + "PSE_Site_Activity_Export.xlsx")
 PSE_Data = pd.read_excel(PSE_Site_Activities_Export, 'PSE Data')
 PSE_NRE = pd.read_excel(PSE_Site_Activities_Export, 'Needs, Readiness, Effectiveness')
 PSE_Changes = pd.read_excel(PSE_Site_Activities_Export, 'Changes')
 
 # Import Update Notifications, used for the Corrections Report
-Update_Notes = pd.read_excel(ROOT_DIR + r"\sample_inputs\Update Notifications.xlsx", sheet_name='Monthly Data Cleaning').drop(columns=['Tab'])
+Update_Notes = pd.read_excel(ROOT_DIR + "/example_inputs/Update Notifications.xlsx", sheet_name='Monthly Data Cleaning').drop(columns=['Tab'])
 
 
 # Monthly PEARS Data Cleaning
@@ -729,8 +729,8 @@ prev_month = (ts - pd.DateOffset(months=1)).to_period('M')
 # Export the Corrections Report as an Excel file
 
 filename1 = 'Monthly PEARS Corrections ' + prev_month.strftime('%Y-%m') + '.xlsx'
-out_path = ROOT_DIR + r"\sample_outputs"
-file_path1 = out_path + '\\' + filename1
+out_path = ROOT_DIR + "/example_outputs"
+file_path1 = out_path + '/' + filename1
 
 dfs = {'Corrections Summary' : Corrections_Sum,
        'Coalitions' : Coa_Corrections,
@@ -831,9 +831,13 @@ def send_mail(send_from, send_to, Cc, subject, html, username, password, isTls=T
         msg.attach(part)
 
     smtp = smtplib.SMTP('smtp.office365.com', 587)
-    smtp.starttls()
-    smtp.login(username,password)
-    smtp.sendmail(send_from, send_to.split(',') + msg['Cc'].split(','), msg.as_string())
+    if isTls:
+        smtp.starttls()
+    try:    
+        smtp.login(username,password)
+        smtp.sendmail(send_from, send_to.split(',') + msg['Cc'].split(','), msg.as_string())
+    except smtplib.SMTPAuthenticationError:
+        print("Authentication failed. Make sure to provide a valid username and password.")
     smtp.quit()
 
 # Create dataframe of staff to notify
@@ -942,7 +946,7 @@ PSE_df = staff_corrections(PSE_Corrections2)
 former_staff_dfs = {'Coalitions' : Coa_df, 'Indirect Activities' : IA_df, 'Partnerships' : Part_df, 'Program Activities' : PA_df, 'PSE' : PSE_df}
 
 filename2 = 'Former Staff PEARS Updates ' + prev_month.strftime('%Y-%m') + '.xlsx'
-file_path2 = out_path + '\\' + filename2
+file_path2 = out_path + '/' + filename2
 
 writer = pd.ExcelWriter(file_path2, engine='xlsxwriter')
 for sheetname, df in former_staff_dfs.items():  # loop through `dict` of dataframes
