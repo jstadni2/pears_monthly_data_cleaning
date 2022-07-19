@@ -57,7 +57,7 @@ Modifications to `pears_monthly_data_cleaning.py` may be necessary to run with s
 	Lines [787](https://github.com/jstadni2/pears_monthly_data_cleaning/blob/master/pears_monthly_data_cleaning.py#L787) and
 	[985](https://github.com/jstadni2/pears_monthly_data_cleaning/blob/master/pears_monthly_data_cleaning.py#L985) should be updated to applicable links for your organization.
 	- The [Illinois Extension Unit Counties workbook](https://github.com/jstadni2/pears_monthly_data_cleaning/blob/master/example_inputs/Illinois%20Extension%20Unit%20Counties.xlsx)
-	maps counties entered in each module's `unit` field to extension units. The `unit` value is used in [lines 894-914](https://github.com/jstadni2/pears_monthly_data_cleaning/blob/master/pears_monthly_data_cleaning.py#L890-L910)
+	maps counties entered in each module's `unit` field to extension units. The `unit` value is used in [lines 894-914](https://github.com/jstadni2/pears_monthly_data_cleaning/blob/master/pears_monthly_data_cleaning.py#L894-L914)
 	to append Regional Specialist contact info to update notification emails. This functionality is subject to your organization's structure and guidance for the `unit` field, and may be omitted from your implementation if necessary. 
 	
 	
