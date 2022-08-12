@@ -9,7 +9,7 @@ PEARS guidance for [Illinois Nutrition Education Programs \(INEP\)](https://inep
 
 ## Installation
 
-The reccommended way to install the PEARS Monthly Data Cleaning script is through git, which can be downloaded [here](https://git-scm.com/downloads). Once downloaded, run the following command:
+The recommended way to install the PEARS Monthly Data Cleaning script is through git, which can be downloaded [here](https://git-scm.com/downloads). Once downloaded, run the following command:
 
 ```bash
 git clone https://github.com/jstadni2/pears_monthly_data_cleaning
@@ -19,7 +19,7 @@ Alternatively, this repository can be downloaded as a zip file via this link:
 [https://github.com/jstadni2/pears_monthly_data_cleaning/zipball/master/](https://github.com/jstadni2/pears_monthly_data_cleaning/zipball/master/)
 
 This repository is designed to run out of the box on a Windows PC using Docker and the [/example_inputs](https://github.com/jstadni2/pears_monthly_data_cleaning/tree/master/example_inputs) and [/example_outputs](https://github.com/jstadni2/pears_monthly_data_cleaning/tree/master/example_outputs) directories.
-To run the script in its current configuration, follow [this link](https://docs.docker.com/desktop/windows/install/) to install Docker Destop for Windows. 
+To run the script in its current configuration, follow [this link](https://docs.docker.com/desktop/windows/install/) to install Docker Desktop for Windows. 
 
 With Docker Desktop installed, this script can be run simply by double clicking the `run_script.bat` file in your local directory.
 

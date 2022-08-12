@@ -46,7 +46,7 @@ def reorder_name(df, name_field, reordered_name_field, drop_substr_fields=False)
 INEP_Staff = reorder_name(INEP_Staff, 'NAME', 'full_name')
 CPHP_Staff = pd.read_excel(FY22_INEP_Staff, sheet_name='CPHP Staff List', header=0).rename(columns={'Last Name' : 'last_name',
                                                                                                     'First Name' : 'first_name',
-                                                                                                    'email Address' : 'email'})
+                                                                                                    'Email Address' : 'email'})
 CPHP_Staff['full_name'] = CPHP_Staff['first_name'].map(str) + ' ' + CPHP_Staff['last_name'].map(str)
 staff = INEP_Staff.drop(columns='NAME').append(CPHP_Staff.loc[~CPHP_Staff['email'].isnull(),
                                                               ['email', 'first_name', 'last_name', 'full_name']], ignore_index=True).drop_duplicates()
