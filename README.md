@@ -42,7 +42,7 @@ The following steps are required to execute the PEARS Monthly Data Cleaning scri
 
 ### Additional setup considerations
 
-- The formatting of PEARS export workbooks changes periodically. The example PEARS exports included in the [/example_inputs](https://github.com/jstadni2/pears_monthly_data_cleaning/tree/master/example_inputs) directory are based on workbooks downloaded on 06/28/22.
+- The formatting of PEARS export workbooks changes periodically. The example PEARS exports included in the [/example_inputs](https://github.com/jstadni2/pears_monthly_data_cleaning/tree/master/example_inputs) directory are based on workbooks downloaded on 08/12/22.
 Modifications to `pears_monthly_data_cleaning.py` may be necessary to run with subsequent PEARS exports.
 - Illinois Extension utilized [Task Scheduler](https://docs.microsoft.com/en-us/windows/win32/taskschd/task-scheduler-start-page) to run this script from a Windows PC on a monthly basis.
 - Plans to deploy the PEARS Monthly Data Cleaning script on AWS were never implemented and are currently beyond the scope of this repository.
@@ -76,7 +76,8 @@ The following input files are required to run the PEARS Monthly Data Cleaning sc
 	- [PSE_Site_Activity_Export.xlsx](https://github.com/jstadni2/pears_monthly_data_cleaning/blob/master/example_inputs/PSE_Site_Activity_Export.xlsx)
 	- [User_Export.xlsx](https://github.com/jstadni2/pears_monthly_data_cleaning/blob/master/example_inputs/User_Export.xlsx)
 
-Example input files are provided in the [/example_inputs](https://github.com/jstadni2/pears_monthly_data_cleaning/tree/master/example_inputs) directory. 
+Example input files are provided in the [/example_inputs](https://github.com/jstadni2/pears_monthly_data_cleaning/tree/master/example_inputs) directory.
+PEARS module exports included as example files are generated using the [Faker](https://faker.readthedocs.io/en/master/) Python package and do not represent actual program evaluation data. 
 
 ## Output Files
 
